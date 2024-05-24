@@ -11,7 +11,7 @@ public class EmployeeData {
                 "tis@mailbox.com", "89231231222", 50000, 30);
         empArray[4] = new Employee("Стриженов Сергей Анатольевич", "Стажер",
                 "ssa@mailbox.com", "89231231298", 10000, 20);
-        System.out.println("Массив сотрудников содержит "+ empArray.length+ " записей:");
+        System.out.println("Массив сотрудников содержит "+ empArray.length+ " записей:\n");
         for (Employee e:empArray) e.printEmployeeToConsole();
     }
 }
