@@ -12,10 +12,15 @@ public class FactorialTest {
     @org.junit.jupiter.api.Test
     @DisplayName("Проверка работы метода при нулевом аргументе")
     public void factorialZeroTest(){
-        Assertions.assertEquals(0, Factorial.factorial(0));
+        Assertions.assertEquals(1, Factorial.factorial(0));
     }
     @org.junit.jupiter.api.Test
-    @DisplayName("Проверка работы метода при отрицательном аргументе -5")
+    @DisplayName("Проверка работы метода при аргументе единице")
+    public void factorialOneTest(){
+        Assertions.assertEquals(1, Factorial.factorial(1));
+    }
+    @org.junit.jupiter.api.Test
+    @DisplayName("Проверка работы метода при отрицательном аргументе -1")
     public void factorialNegativeTest(){
         assertThrows(IllegalArgumentException.class, () -> Factorial.factorial(-1));
     }
