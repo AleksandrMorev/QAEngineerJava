@@ -21,17 +21,16 @@ public class FactorialTest extends Assert{
         Factorial.factorial(input);
     }
 
-    /*
-    //Отдельно оформленные негативные тесты
-    @Test(description = "Проверка работы метода при отрицательном аргументе -1")
+//первые варианты негативных тестов, отключены, т.к. разработаны параметризованные
+    @Test(description = "Проверка работы метода при отрицательном аргументе -1", enabled = false)
     public void factorialNegativeTest(){
         assertThrows(IllegalArgumentException.class, () -> Factorial.factorial(-1));
     }
-    @Test(description = "Проверка работы метода при аргументе, дающем результат больше диапазона значений int")
+    @Test(description = "Проверка работы метода при аргументе, дающем результат больше диапазона значений int", enabled = false)
     public void factorialBigResultTest(){
         assertThrows(IllegalArgumentException.class, () -> Factorial.factorial(13));
     }
-    */
+
 
 }
 
