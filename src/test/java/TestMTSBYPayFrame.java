@@ -1,4 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +13,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import java.time.Duration;
 
 @Test(description = "Тестирование формы оплаты на главной странице и окна оплаты")
@@ -40,6 +41,7 @@ public class TestMTSBYPayFrame extends Assert {
             dataProviderClass = TestMTSBYPayFrameData.class,
             description = "Проверка надписей в незаполненных полях формы оплаты на главной странице",
             groups = "Pay_section")
+    @Severity(SeverityLevel.MINOR)
     public void testPaySectionPlaceholdersDisplayed(String fieldId, String placeholderText) {
         assertEquals(placeholderText, driver.findElement(By.id(fieldId)).getAttribute("placeholder"));
     }
@@ -49,6 +51,7 @@ public class TestMTSBYPayFrame extends Assert {
             description = "Проверка номера телефона и суммы в окне оплаты",
             groups = "Pay_frame",
             priority = 1)
+    @Severity(SeverityLevel.CRITICAL)
     public void testPayFramePhoneAndSum(String payPhoneNumber, String paySum) {
         WebElement payPhoneInputField = driver.findElement(By.id("connection-phone"));
         payPhoneInputField.click();
@@ -72,6 +75,7 @@ public class TestMTSBYPayFrame extends Assert {
             dependsOnMethods = "testPayFramePhoneAndSum",
             priority = 2
     )
+    @Severity(SeverityLevel.TRIVIAL)
     public void testPayFramePaySystemIcons(String paySystem, String number) {
         if (number.equals("4"))
             assertTrue(driver.findElement(By.xpath("//img[@src=\"assets/images/payment-icons/card-types/belkart-system.svg\"]/following::div/img[1]")).isDisplayed() | driver.findElement(By.xpath("//img[@src=\"assets/images/payment-icons/card-types/belkart-system.svg\"]/following::div/img[2]")).isDisplayed());
@@ -85,6 +89,7 @@ public class TestMTSBYPayFrame extends Assert {
             priority = 3,
             dependsOnMethods = "testPayFramePhoneAndSum"
     )
+    @Severity(SeverityLevel.MINOR)
     public void testPayFrameLabels(String labelText, String Formcontrolname) {
         assertEquals(labelText, driver.findElement(By.xpath("//input[@formcontrolname = " + Formcontrolname + "]/following::label")).getText());
     }
