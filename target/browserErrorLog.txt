@@ -1,0 +1,6 @@
+[2024-07-07T19:02:56.448Z] [WARNING] https://www.mts.by/bitrix/js/main/jquery/jquery-1.12.4.min.js?168901998797163 2 Listener added for a 'DOMNodeInserted' mutation event. This event type is deprecated, and will be removed from this browser VERY soon. Usage of this event listener will cause performance issues today, and represents a large risk of imminent site breakage. Consider using MutationObserver instead. See https://chromestatus.com/feature/5083947249172480 for more information.
+[2024-07-07T19:02:59.148Z] [WARNING] https://privacy-cs.mail.ru/static/sync-loader.js 4 Failed to parse video contentType: video/ogg; codecs=theora
+[2024-07-07T19:03:02.605Z] [WARNING] https://www.mts.by/ - Each dictionary in the list "icons" should contain a non-empty UTF8 string field "sizes".
+[2024-07-07T19:03:02.605Z] [WARNING] https://www.mts.by/ - Each dictionary in the list "icons" should contain a non-empty UTF8 string field "type".
+[2024-07-07T19:03:02.682Z] [WARNING] https://www.mts.by/ - Each dictionary in the list "icons" should contain a non-empty UTF8 string field "sizes".
+[2024-07-07T19:03:02.682Z] [WARNING] https://www.mts.by/ - Each dictionary in the list "icons" should contain a non-empty UTF8 string field "type".

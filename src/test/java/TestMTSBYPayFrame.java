@@ -13,12 +13,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import java.time.Duration;
 
 @Test(description = "Тестирование формы оплаты на главной странице и окна оплаты")
 public class TestMTSBYPayFrame extends Assert {
 
     WebDriver driver;
+
 
     @BeforeClass
     public void setupAll() {
@@ -34,6 +36,7 @@ public class TestMTSBYPayFrame extends Assert {
 
     @AfterClass
     public void teardown() {
+        UtilMethodClass.saveBrowserLogsToFile(driver, "/target/browserErrorLog.txt");
         driver.quit();
     }
 
@@ -68,6 +71,7 @@ public class TestMTSBYPayFrame extends Assert {
         sa.assertEquals("Оплатить " + paySum + " BYN", driver.findElement(By.xpath("//button[@type=\"submit\"]")).getText());
         sa.assertAll();
     }
+
     @Test(dataProvider = "PayFramePaySystems",
             dataProviderClass = TestMTSBYPayFrameData.class,
             description = "Проверка наличия иконок платежных систем в окне оплаты",
@@ -82,6 +86,7 @@ public class TestMTSBYPayFrame extends Assert {
         else
             assertTrue(driver.findElement(By.xpath("//img[@src=\"assets/images/payment-icons/card-types/" + paySystem + "-system.svg\"]")).isDisplayed());
     }
+
     @Test(dataProvider = "PayFrameLabelsForFormcontrolnames",
             dataProviderClass = TestMTSBYPayFrameData.class,
             description = "Проверка надписей в незаполненных полях данных карты в окне оплаты",
@@ -93,6 +98,5 @@ public class TestMTSBYPayFrame extends Assert {
     public void testPayFrameLabels(String labelText, String Formcontrolname) {
         assertEquals(labelText, driver.findElement(By.xpath("//input[@formcontrolname = " + Formcontrolname + "]/following::label")).getText());
     }
-
 
 }
