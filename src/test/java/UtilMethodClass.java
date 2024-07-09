@@ -1,4 +1,6 @@
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
@@ -19,6 +21,16 @@ public class UtilMethodClass {
             } catch (IOException exc) {
                 exc.printStackTrace();
             }
+        }
+    }
+
+    public static void makeScreenshot (WebDriver driver, String fileName){
+        File temp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File destination = new File("target/TestFailureScreenshots/" + fileName + ".jpg");
+        try{
+            FileUtils.copyFile(temp,destination);
+        } catch (IOException exc){
+            exc.printStackTrace();
         }
     }
 }

@@ -1,19 +1,19 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
 import java.time.Duration;
 
 @Test(description = "Тестирование формы оплаты на главной странице и окна оплаты")
@@ -36,8 +36,13 @@ public class TestMTSBYPayFrame extends Assert {
 
     @AfterClass
     public void teardown() {
-        UtilMethodClass.saveBrowserLogsToFile(driver, "/target/browserErrorLog.txt");
+        UtilMethodClass.saveBrowserLogsToFile(driver, "target/BrowserLogs/browserErrorLog.txt");
         driver.quit();
+    }
+
+    @AfterMethod
+    public void takeScreenShotOnFailure(ITestResult testResult) {
+        if (testResult.getStatus() == ITestResult.FAILURE) UtilMethodClass.makeScreenshot(driver, "Failure - " + testResult.getName());
     }
 
     @Test(dataProvider = "MainPagePaySectionPlaceholdersForIds",
